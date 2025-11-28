@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KL University Portal — Login</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --primary: #ef4444;      /* Accent color (can change to KL palette) */
+      --primary-600: #dc2626;
+      --ring: rgba(239, 68, 68, 0.35);
+      --input: #1f2937;
+      --border: #374151;
+      --success: #22c55e;
+      --error: #ef4444;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 20%, #111827 0%, #0b1021 65%, #060914 100%);
+      color: var(--text);
+    }
+
+    .container {
+      min-height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-items: center;
+      padding: 2rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.45);
+      overflow: hidden;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 1.25rem 0.75rem 1.25rem;
+    }
+    .logo {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: conic-gradient(from 210deg, var(--primary), #fff 35%, var(--primary) 60%, #fff);
+      border
