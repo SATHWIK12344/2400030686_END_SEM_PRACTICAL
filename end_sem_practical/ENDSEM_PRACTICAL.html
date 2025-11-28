@@ -1,67 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KL University Portal — Login</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KL University — Student Login</title>
+  <meta name="description" content="KL University student login page" />
 
   <style>
-    :root {
-      --bg: #0f172a;
-      --card: #111827;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --primary: #ef4444;      /* Accent color (can change to KL palette) */
-      --primary-600: #dc2626;
-      --ring: rgba(239, 68, 68, 0.35);
-      --input: #1f2937;
-      --border: #374151;
-      --success: #22c55e;
-      --error: #ef4444;
+    :root{
+      --bg1: #0f1724;
+      --bg2: #0b3a6b;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #0ea5e9;
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius: 12px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
-    * { box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 20% 20%, #111827 0%, #0b1021 65%, #060914 100%);
-      color: var(--text);
+    /* Reset-ish */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100%;
+      background: linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 100%);
+      color:#0b1220;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    .container {
-      min-height: 100%;
-      display: grid;
-      grid-template-columns: 1fr;
-      align-items: center;
-      justify-items: center;
-      padding: 2rem;
+    .container{
+      width:100%;
+      max-width:980px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
     }
 
-    .card {
-      width: 100%;
-      max-width: 420px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.45);
-      overflow: hidden;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1.25rem 1.25rem 0.75rem 1.25rem;
+    /* Left: marketing / branding */
+    .brand {
+      color: rgba(255,255,255,0.98);
+      padding:28px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      min-height:360px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:18px;
     }
     .logo {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      background: conic-gradient(from 210deg, var(--primary), #fff 35%, var(--primary) 60%, #fff);
-      border
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo svg{width:56px;height:56px;flex:0 0 56px}
+    .univ-name {font-size:22px;font-weight:700;letter-spacing:0.2px}
+    .univ-sub {font-size:13px;color:rgba(255,255,255,0.8);margin-top:-2px}
+
+    .brand h1{margin:0;font-size:28px}
+    .brand p{margin:0;color:rgba(255,255,255,0.85);line-height:1.5}
+
+    /* Right: card (login) */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding:26px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.25);
+    }
+    .card h2{
+      margin:0 0 6px 0;
+      font-size:20px;
+      color:#0b1220;
+    }
+    .card p.desc{margin:0 0 18px 0;color:var(--muted);font-size:14px}
+
+    form .field{margin-bottom:14px}
+    label{display:block;font-size:13px;color:#111827;margin-bottom:6px}
+    input[type="text"],
+    input[type="password"],
+    input[type="email"]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid #e6edf3;
+      background:#fbfdff;
+      font-size:14px;
+      outline:none;
+      transition:box-shadow .12s, border-color .12s;
+    }
+    input:focus{box-shadow:0 6px 18px rgba(14,165,233,0.12);border-color:var(--accent)}
+
+    .row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .actions{margin-top:12px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+    }
+    .btn-primary{
+      color:white;
+      background:linear-gradient(90deg,var(--accent),#0369a1);
+      box-shadow:0 8px 20px rgba(3,105,161,0.18);
+    }
+    .btn-ghost{
+      background:transparent;
+      border:1px solid #e6edf3;
+      color:#0b1220;
+    }
+
+    .muted {font-size:13px;color:var(--muted)}
+    .links a{color:var(--accent);text-decoration:none;font-weight:600}
+    .remember{display:flex;align-items:center;gap:8px}
+
+    .notice{
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:10px;
+      font-size:13px;
+      display:none;
+    }
+    .notice.success{background:rgba(16,185,129,0.12);color:var(--success);display:none}
+    .notice.error{background:rgba(239,68,68,0.08);color:var(--danger);display:none}
+
+    .small {font-size:12px;color:var(--muted)}
+
+    footer.small{margin-top:14px;color:rgba(11,18,32,0.6);font-size:12px}
+
+    /* Responsive */
+    @media (max-width:920px){
+      .container{grid-template-columns:1fr;gap:18px;padding:16px}
+      .brand{order:2}
+      .card{order:1}
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container" role="main" aria-labelledby="pageTitle">
+    <!-- Left branding -->
+    <section class="brand" aria-hidden="false">
+      <div class="logo" role="img" aria-label="KL University logo">
+        <!-- simple shield / book SVG -->
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="64" height="64" rx="12" fill="#042A4B"/>
+          <path d="M16 20c8-6 24-6 32 0v20c-8-6-24-6-32 0V20z" fill="#0EA5E9" opacity="0.95"/>
+          <path d="M20 28c6-4 16-4 22 0v8c-6-4-16-4-22 0v-8z" fill="#fff" opacity="0.95"/>
+        </svg>
+        <div>
+          <div class="univ-name">KL University</div>
+          <div class="univ-sub">Student & Staff Portal</div>
+        </div>
+      </div>
+
+      <h1 style="color:white;margin-top:16px">Welcome back</h1>
+      <p>Sign in to access your courses, exam schedules, results and university resources.</p>
+
+      <div style="margin-top:auto" class="small">
+        Not a member? <a href="#" style="color: #bae6fd; text-decoration:underline">Contact admissions</a> — or visit the campus services desk.
+      </div>
+    </section>
+
+    <!-- Right card (login) -->
+    <section class="card" aria-labelledby="loginTitle">
+      <h2 id="loginTitle">KL University Login</h2>
+      <p class="desc">Enter your university email (or student ID) and password.</p>
+
+      <form id="loginForm" novalidate>
+        <!-- Student / Staff ID or Email -->
+        <div class="field">
+          <label for="identifier">Email or Student ID</label>
+          <input id="identifier" name="identifier" type="text" inputmode="email"
+                 placeholder="example@student.kluniv.edu or 20XX1234" required
+                 aria-required="true" />
+          <div class="small" id="identifierHint">Use your KL University email or student/staff ID.</div>
+        </div>
+
+        <!-- Password + show toggle -->
+        <div class="field">
+          <label for="password">Password</label>
+          <div style="position:relative">
+            <input id="password" name="password" type="password" placeholder="Enter your password" required
+                   aria-required="true" style="padding-right:84px" />
+            <button type="button" id="togglePwd" aria-label="Show password" title="Show password"
+                    style="position:absolute;right:8px;top:50%;transform:translateY(-50%);padding:6px 8px;border-radius:8px;border:none;background:transparent;cursor:pointer;font-size:13px">
+              Show
+            </button>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:4px">
+          <label class="remember">
+            <input type="checkbox" id="remember" name="remember" style="width:16px;height:16px" />
+            <span class="small">Remember me</span>
+          </label>
+
+          <div class="links small">
+            <a href="#" id="forgotLink">Forgot password?</a>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit" id="loginBtn" aria-live="polite">
+            <!-- simple lock svg -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M17 8h-1V6a4 4 0 00-8 0v2H7a1 1 0 00-1 1v9a1 1 0 001 1h10a1 1 0 001-1V9a1 1 0 00-1-1z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Sign in
+          </button>
+
+          <button type="button" class="btn btn-ghost" id="helpBtn">Need help</button>
+        </div>
+
+        <div id="noticeSuccess" class="notice success" role="status" aria-live="polite"></div>
+        <div id="noticeError" class="notice error" role="
